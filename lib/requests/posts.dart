@@ -12,9 +12,9 @@ class _PostApi extends Api {
       'userId': 1,
     };
 
-    post(url: '', body: b).then((res) {
+    post(body: b).then((res) {
       print(jsonDecode(res.body));
-    }).catchError((e) => print('$e === ERROR2123123'));
+    }).catchError((e) => print(e));
   }
 }
 
