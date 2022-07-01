@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import './requests/posts.dart' show PostApi;
+import './requests/posts.dart';
 
-final pR = PostApi();
 void main() {
   runApp(const MyApp());
 }
@@ -39,7 +38,8 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _counter++;
     });
-    pR.getPosts();
+    postApi.getPosts();
+    // pR.getPosts();
   }
 
   @override

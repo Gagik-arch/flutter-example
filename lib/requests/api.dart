@@ -8,8 +8,8 @@ extension IsOk on http.Response {
 }
 
 class Api {
-  String baseUrl = '';
-  Api(this.baseUrl);
+  String _baseUrl = '';
+  Api(this._baseUrl);
 
   Future get(String url) {
     return _configureRequest(url: url);
@@ -19,7 +19,7 @@ class Api {
     return _configureRequest(url: url, method: 'post', body: body);
   }
 
-  _configureRequest({
+  Future _configureRequest({
     String url = '',
     String? method = 'get',
     body = Map<String, dynamic>,
@@ -33,7 +33,7 @@ class Api {
     if (token.isNotEmpty) {
       headers['Authorization'] = token;
     }
-    var URL = Uri.parse('https://jsonplaceholder.typicode.com' + baseUrl + url);
+    var URL = Uri.parse('https://jsonplaceholder.typicode.com$_baseUrl$url');
 
     late http.Response response;
 

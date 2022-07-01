@@ -2,8 +2,8 @@ import './api.dart' show Api;
 import 'dart:core';
 import 'dart:convert';
 
-class PostApi extends Api {
-  PostApi() : super('/posts');
+class _PostApi extends Api {
+  _PostApi() : super('/posts');
 
   getPosts() {
     Map b = {
@@ -12,8 +12,10 @@ class PostApi extends Api {
       'userId': 1,
     };
 
-    return post(url: '', body: b).then((res) {
-      // print(jsonDecode(res.body)['title']);
+    post(url: '', body: b).then((res) {
+      print(jsonDecode(res.body));
     }).catchError((e) => print('$e === ERROR2123123'));
   }
 }
+
+final postApi = _PostApi();
