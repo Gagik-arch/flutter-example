@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import './requests/posts.dart';
+import './core/main.dart';
 
 void main() {
   runApp(const MyApp());
-}
-
-class P {
-  String name = 'ham';
-  int age = 431;
 }
 
 class MyApp extends StatelessWidget {
@@ -38,22 +34,41 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _counter++;
     });
-    postApi.getPosts();
-    // pR.getPosts();
+    // postApi.getPosts();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text('$_counter', style: Theme.of(context).textTheme.headline4),
-          ],
-        ),
+      body: Column(
+        children: <Widget>[
+          Accordeon(
+            title: const Text('title'),
+            isExpanded: false,
+            id: '1',
+            child: Container(
+                width: 200,
+                height: 200,
+                color: const Color.fromRGBO(0, 150, 50, 1)),
+          ),
+          Accordeon(
+            id: '2',
+            title: const Text('title2'),
+            isExpanded: true,
+            child: Accordeon(
+              id: '3',
+              title: const Text('title5'),
+              isExpanded: true,
+              child: Accordeon(
+                id: '4',
+                title: const Text('title5'),
+                isExpanded: true,
+                child: const Text('asdsd'),
+              ),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
@@ -63,3 +78,14 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+List data = [
+  {
+    'title': 'asd',
+    'subTitle': 'asddgg',
+  },
+  {
+    'title': '2132',
+    'subTitle': 'asdasdasd',
+  }
+];
