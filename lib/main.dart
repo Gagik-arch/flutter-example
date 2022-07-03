@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './requests/posts.dart';
+import './api/posts.dart';
 import './core/main.dart';
 
 void main() {
@@ -55,15 +55,15 @@ class _MyHomePageState extends State<MyHomePage> {
           Accordeon(
             id: '2',
             title: const Text('title2'),
-            isExpanded: true,
+            isExpanded: false,
             child: Accordeon(
               id: '3',
-              title: const Text('title5'),
-              isExpanded: true,
+              title: const Text('title3'),
+              isExpanded: false,
               child: Accordeon(
                 id: '4',
                 title: const Text('title5'),
-                isExpanded: true,
+                isExpanded: false,
                 child: const Text('asdsd'),
               ),
             ),
