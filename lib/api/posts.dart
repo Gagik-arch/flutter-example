@@ -1,19 +1,23 @@
 import 'main.dart' show Api;
 import 'dart:core';
-import 'dart:convert';
+import '../models/post.model.dart';
+import 'package:flutter/foundation.dart';
 
 class _PostApi extends Api {
-  _PostApi() : super('/posts');
+  _PostApi();
 
   getPosts() {
-    Map b = {
+    final Map<String, dynamic> b = {
       'title': 'foo',
       'body': 'bar',
       'userId': 1,
     };
 
-    post(body: b).then((res) {
-      print(jsonDecode(res.body));
+    get('').then((res) {
+      var posts = PostModel.fromJson<List<PostModel>>(res.body);
+      if (kDebugMode) {
+        print(posts);
+      }
     }).catchError((e) => print(e));
   }
 }

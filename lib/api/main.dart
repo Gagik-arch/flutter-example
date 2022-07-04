@@ -8,32 +8,35 @@ extension IsOk on http.Response {
 }
 
 class Api {
-  String _baseUrl = '';
-  Api(this._baseUrl);
+  String? baseUrl;
+  bool? cleanRequest;
 
-  Future get(String url) {
+  Api({this.baseUrl = '', this.cleanRequest});
+
+  Future<http.Response> get(String url) {
     return _configureRequest(url: url);
   }
 
-  Future post({String url = '', body = Map<String, dynamic>}) {
+  Future<http.Response> post({String url = '', body = Map<String, dynamic>}) {
     return _configureRequest(url: url, method: 'post', body: body);
   }
 
-  Future _configureRequest({
+  Future<http.Response> _configureRequest({
     String url = '',
     String? method = 'get',
     body = Map<String, dynamic>,
   }) async {
     const String token = ''; //localStorage.getItem('token')
-
+    print('$baseUrl   == 12123');
     final headers = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     };
 
-    if (token.isNotEmpty) {
-      headers['Authorization'] = token;
-    }
-    var URL = Uri.parse('https://jsonplaceholder.typicode.com$_baseUrl$url');
+    if (token.isNotEmpty) headers['Authorization'] = token;
+    url = cleanRequest == true
+        ? '$baseUrl$url'
+        : 'https://jsonplaceholder.typicode.com$baseUrl$url';
+    final URL = Uri.parse(url);
 
     late http.Response response;
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../main.dart';
 
 class Accordeon extends StatefulWidget {
   bool isExpanded = false;
@@ -67,7 +68,10 @@ class _AccordeonState extends State<Accordeon> with TickerProviderStateMixin {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GestureDetector(
-            onTap: () => _onTap(),
+            onTap: () {
+              context.findAncestorStateOfType<MyHomePageState>()?.asd();
+              _onTap();
+            },
             child: Row(
               children: [
                 Expanded(
