@@ -3,7 +3,7 @@ import '../main.dart';
 
 class Accordeon extends StatefulWidget {
   bool isExpanded = false;
-  Widget child;
+  List<Widget> children;
   Widget title;
   String id;
   EdgeInsets? padding;
@@ -13,7 +13,7 @@ class Accordeon extends StatefulWidget {
   Accordeon({
     Key? key,
     required this.isExpanded,
-    required this.child,
+    required this.children,
     required this.title,
     required this.id,
     this.padding,
@@ -101,7 +101,9 @@ class _AccordeonState extends State<Accordeon> with TickerProviderStateMixin {
             sizeFactor: _animation,
             axis: Axis.vertical,
             axisAlignment: -1,
-            child: widget.child,
+            child: Column(
+              children: <Widget>[...widget.children],
+            ),
           ),
         ],
       ),

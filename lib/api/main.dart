@@ -27,7 +27,6 @@ class Api {
     body = Map<String, dynamic>,
   }) async {
     const String token = ''; //localStorage.getItem('token')
-    print('$baseUrl   == 12123');
     final headers = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     };
@@ -36,23 +35,22 @@ class Api {
     url = cleanRequest == true
         ? '$baseUrl$url'
         : 'https://jsonplaceholder.typicode.com$baseUrl$url';
-    final URL = Uri.parse(url);
 
     late http.Response response;
 
     switch (method) {
       case 'get':
-        response = await http.get(URL, headers: headers);
+        response = await http.get(Uri.parse(url), headers: headers);
         break;
       case 'post':
-        response =
-            await http.post(URL, headers: headers, body: jsonEncode(body));
+        response = await http.post(Uri.parse(url),
+            headers: headers, body: jsonEncode(body));
         break;
       case 'put':
-        response = await http.put(URL, headers: headers);
+        response = await http.put(Uri.parse(url), headers: headers);
         break;
       case 'delete':
-        response = await http.delete(URL, headers: headers);
+        response = await http.delete(Uri.parse(url), headers: headers);
         break;
     }
     try {

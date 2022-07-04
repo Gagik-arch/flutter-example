@@ -4,7 +4,7 @@ import '../models/post.model.dart';
 import 'package:flutter/foundation.dart';
 
 class _PostApi extends Api {
-  _PostApi();
+  _PostApi() : super(baseUrl: '/posts');
 
   getPosts() {
     final Map<String, dynamic> b = {

@@ -33,7 +33,7 @@ class MyHomePageState extends State<MyHomePage> {
   void asd() {
     setState(() => counter *= 2);
     postApi.getPosts();
-    print('$counter === asd');
+    // print('$counter === asd');
   }
 
   @override
@@ -48,30 +48,33 @@ class MyHomePageState extends State<MyHomePage> {
       body: Column(
         children: <Widget>[
           Accordeon(
-            title: const Text('title'),
-            isExpanded: false,
-            id: '1',
-            child: Container(
-                width: 200,
-                height: 200,
-                color: const Color.fromRGBO(0, 150, 50, 1)),
-          ),
-          Accordeon(
-            id: '2',
-            title: const Text('title2'),
-            isExpanded: false,
-            child: Accordeon(
-              id: '3',
-              title: const Text('title3'),
+              title: const Text('title'),
               isExpanded: false,
-              child: Accordeon(
-                id: '4',
-                title: const Text('title5'),
-                isExpanded: false,
-                child: const Text('asdsd'),
-              ),
-            ),
-          ),
+              id: '1',
+              children: <Widget>[
+                Container(
+                    width: 200,
+                    height: 200,
+                    color: const Color.fromRGBO(0, 150, 50, 1)),
+              ]),
+          Accordeon(
+              id: '2',
+              title: const Text('title2'),
+              isExpanded: false,
+              children: <Widget>[
+                Accordeon(
+                    id: '3',
+                    title: const Text('title3'),
+                    isExpanded: false,
+                    children: <Widget>[
+                      Accordeon(
+                        id: '4',
+                        title: const Text('title5'),
+                        isExpanded: false,
+                        children: const <Widget>[Text('asdsd')],
+                      ),
+                    ]),
+              ]),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -82,14 +85,3 @@ class MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-List data = [
-  {
-    'title': 'asd',
-    'subTitle': 'asddgg',
-  },
-  {
-    'title': '2132',
-    'subTitle': 'asdasdasd',
-  }
-];
