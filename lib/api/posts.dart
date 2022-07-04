@@ -4,7 +4,7 @@ import '../models/post.model.dart';
 import 'package:flutter/foundation.dart';
 
 class _PostApi extends Api {
-  _PostApi();
+  _PostApi() : super(baseUrl: '/posts');
 
   getPosts() {
     final Map<String, dynamic> b = {
@@ -13,7 +13,7 @@ class _PostApi extends Api {
       'userId': 1,
     };
 
-    get('').then((res) {
+    get().then((res) {
       var posts = PostModel.fromJson<List<PostModel>>(res.body);
       if (kDebugMode) {
         print(posts);
