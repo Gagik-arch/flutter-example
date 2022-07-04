@@ -13,12 +13,20 @@ class Api {
 
   Api({this.baseUrl = '', this.cleanRequest});
 
-  Future<http.Response> get(String url) {
+  Future<http.Response> get({String url = ''}) {
     return _configureRequest(url: url);
   }
 
   Future<http.Response> post({String url = '', body = Map<String, dynamic>}) {
     return _configureRequest(url: url, method: 'post', body: body);
+  }
+
+  Future<http.Response> delete({String url = '', body = Map<String, dynamic>}) {
+    return _configureRequest(url: url, method: 'delete', body: body);
+  }
+
+  Future<http.Response> put({String url = '', body = Map<String, dynamic>}) {
+    return _configureRequest(url: url, method: 'put', body: body);
   }
 
   Future<http.Response> _configureRequest({

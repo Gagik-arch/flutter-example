@@ -13,7 +13,7 @@ class _PostApi extends Api {
       'userId': 1,
     };
 
-    get('').then((res) {
+    get().then((res) {
       var posts = PostModel.fromJson<List<PostModel>>(res.body);
       if (kDebugMode) {
         print(posts);

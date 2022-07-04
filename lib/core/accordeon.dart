@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import '../main.dart';
 
 class Accordeon extends StatefulWidget {
   bool isExpanded = false;
-  List<Widget> children;
+  Widget child;
   Widget title;
   String id;
   EdgeInsets? padding;
@@ -13,7 +12,7 @@ class Accordeon extends StatefulWidget {
   Accordeon({
     Key? key,
     required this.isExpanded,
-    required this.children,
+    required this.child,
     required this.title,
     required this.id,
     this.padding,
@@ -68,10 +67,7 @@ class _AccordeonState extends State<Accordeon> with TickerProviderStateMixin {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GestureDetector(
-            onTap: () {
-              context.findAncestorStateOfType<MyHomePageState>()?.asd();
-              _onTap();
-            },
+            onTap: () => _onTap(),
             child: Row(
               children: [
                 Expanded(
@@ -101,9 +97,7 @@ class _AccordeonState extends State<Accordeon> with TickerProviderStateMixin {
             sizeFactor: _animation,
             axis: Axis.vertical,
             axisAlignment: -1,
-            child: Column(
-              children: <Widget>[...widget.children],
-            ),
+            child: widget.child,
           ),
         ],
       ),
